@@ -1,3 +1,7 @@
 Django==5.2
-Pillow
-razorpay
+djangorestframework==3.16.0
+Pillow==11.3.0
+razorpay==1.4.2
+python-dotenv==1.1.1
+gunicorn==23.0.0
+whitenoise==6.9.0

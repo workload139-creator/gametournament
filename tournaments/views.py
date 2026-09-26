@@ -28,6 +28,11 @@ def register_tournament(request, id):
     return redirect("dashboard")
 
 
+registration.paid=True
+
+registration.save()
+
+
 @login_required
 def tournament_detail(request, id):
 

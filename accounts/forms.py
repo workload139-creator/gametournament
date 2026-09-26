@@ -4,12 +4,14 @@ from .models import User
 class RegisterForm(UserCreationForm):
 
     class Meta:
-        model = User
-        fields = (
-            "username",
-            "email",
-            "phone",
-            "ff_uid",
-            "password1",
-            "password2",
-        )
+
+        model=User
+
+        fields=[
+        "username",
+        "email",
+        "phone",
+        "ff_uid",
+        "password1",
+        "password2"
+        ]

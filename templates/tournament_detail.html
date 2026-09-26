@@ -7,21 +7,29 @@
 
 <h2>{{tournament.title}}</h2>
 
-<p>Entry Fee ₹{{tournament.entry_fee}}</p>
+<p>Entry Fee: ₹{{tournament.entry_fee}}</p>
 
-<p>Prize Pool ₹{{tournament.prize_pool}}</p>
+<p>Prize Pool: ₹{{tournament.prize_pool}}</p>
 
 <p>Status: {{tournament.status}}</p>
 
-{% if registration and registration.paid %}
+{% if registration %}
+
+{% if registration.paid %}
 
 <div class="alert alert-success">
 
 <h4>Room Unlocked</h4>
 
-<p>Room ID: {{tournament.room_id}}</p>
+<p><b>Room ID:</b> {{tournament.room_id}}</p>
 
-<p>Password: {{tournament.room_password}}</p>
+<p><b>Password:</b> {{tournament.room_password}}</p>
+
+<a href="/unlock/{{tournament.id}}/" class="btn btn-success">
+
+Send on WhatsApp
+
+</a>
 
 </div>
 
@@ -29,13 +37,23 @@
 
 <div class="alert alert-warning">
 
-Complete payment to unlock Room ID.
+Payment pending.
 
 </div>
 
 <a href="/payments/create-order/" class="btn btn-warning">
 
 Pay Now
+
+</a>
+
+{% endif %}
+
+{% else %}
+
+<a href="/register/{{tournament.id}}/" class="btn btn-danger">
+
+Join Tournament
 
 </a>
 

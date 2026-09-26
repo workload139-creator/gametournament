@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="gaming-card p-4">
+
+<h2>Referral</h2>
+
+<p>Earn ₹20 for every successful invite.</p>
+
+<input class="form-control mb-3" value="https://ffpro.com/ref/{{request.user.id}}" readonly>
+
+<button class="btn btn-warning w-100">
+
+Copy Referral Link
+
+</button>
+
+</div>
+
+{% endblock %}

@@ -1,11 +1,11 @@
-# Free Fire Tournament Website
+# Free Fire Tournament Pro
 
-Django based esports tournament website.
+Professional Django tournament platform.
 
-## Install
+## Run
 
 ```bash
-pip install -r requirements.txt
 python manage.py migrate
+python manage.py createsuperuser
 python manage.py runserver
 ```

@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Admin Analytics</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="gaming-card p-4">
+
+<h4>Players</h4>
+
+<h2>{{total_players}}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="gaming-card p-4">
+
+<h4>Tournaments</h4>
+
+<h2>{{total_tournaments}}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="gaming-card p-4">
+
+<h4>Revenue</h4>
+
+<h2>₹{{revenue}}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="gaming-card p-4">
+
+<h4>Payout</h4>
+
+<h2>₹{{payout}}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

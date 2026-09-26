@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -6,16 +7,22 @@
 
 <h2>{{tournament.title}}</h2>
 
-<p>Entry ₹{{tournament.entry_fee}}</p>
+<p>Entry Fee ₹{{tournament.entry_fee}}</p>
 
-<p>Prize ₹{{tournament.prize_pool}}</p>
+<p>Prize Pool ₹{{tournament.prize_pool}}</p>
 
-<a href="/register/{{tournament.id}}/" class="btn btn-danger">
+<p>Status: {{tournament.status}}</p>
 
-Join Tournament
+<div id="countdown" class="countdown-box mb-3"></div>
+
+<a href="/payments/create-order/" class="btn btn-warning btn-lg w-100">
+
+Pay & Join Tournament
 
 </a>
 
 </div>
+
+<script src="{% static 'js/countdown.js' %}"></script>
 
 {% endblock %}

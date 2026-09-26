@@ -13,16 +13,34 @@
 
 <p>Status: {{tournament.status}}</p>
 
-<div id="countdown" class="countdown-box mb-3"></div>
+{% if registration and registration.paid %}
 
-<a href="/payments/create-order/" class="btn btn-warning btn-lg w-100">
+<div class="alert alert-success">
 
-Pay & Join Tournament
+<h4>Room Unlocked</h4>
 
-</a>
+<p>Room ID: {{tournament.room_id}}</p>
+
+<p>Password: {{tournament.room_password}}</p>
 
 </div>
 
-<script src="{% static 'js/countdown.js' %}"></script>
+{% else %}
+
+<div class="alert alert-warning">
+
+Complete payment to unlock Room ID.
+
+</div>
+
+<a href="/payments/create-order/" class="btn btn-warning">
+
+Pay Now
+
+</a>
+
+{% endif %}
+
+</div>
 
 {% endblock %}

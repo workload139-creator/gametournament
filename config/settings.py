@@ -5,7 +5,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    "teams",
+    "wallet",
+    "referrals",
     "accounts",
     "tournaments",
     "payments",
@@ -24,3 +26,7 @@ TEMPLATES[0]["DIRS"] = [BASE_DIR / "templates"]
 
 RAZORPAY_KEY = "rzp_test_xxxxx"
 RAZORPAY_SECRET = "xxxxxxxx"
+
+
+
+

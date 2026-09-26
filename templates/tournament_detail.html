@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="gaming-card p-4">
+
+<h2>{{tournament.title}}</h2>
+
+<p>Entry ₹{{tournament.entry_fee}}</p>
+
+<p>Prize ₹{{tournament.prize_pool}}</p>
+
+<a href="/register/{{tournament.id}}/" class="btn btn-danger">
+
+Join Tournament
+
+</a>
+
+</div>
+
+{% endblock %}

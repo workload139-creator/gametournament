@@ -1,23 +1,32 @@
-import razorpay
 import json
+import razorpay
 
 from django.conf import settings
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from tournaments.models import Registration
+from .models import Payment
 
 client = razorpay.Client(
-    auth=(settings.RAZORPAY_KEY, settings.RAZORPAY_SECRET)
+    auth=(settings.RAZORPAY_KEY,settings.RAZORPAY_SECRET)
 )
 
 def create_order(request):
 
+    amount = 5000
+
     order = client.order.create({
-        "amount": 5000,
-        "currency": "INR",
-        "payment_capture": 1
+        "amount":amount,
+        "currency":"INR",
+        "payment_capture":1
     })
+
+    Payment.objects.create(
+        user=request.user,
+        order_id=order["id"],
+        amount=amount
+    )
 
     return JsonResponse(order)
 
@@ -26,19 +35,32 @@ def webhook(request):
 
     payload = json.loads(request.body)
 
-    if payload["event"] == "payment.captured":
+    if payload["event"]=="payment.captured":
 
-        order_id = payload["payload"]["payment"]["entity"]["order_id"]
+        entity = payload["payload"]["payment"]["entity"]
+
+        order_id = entity["order_id"]
+
+        payment_id = entity["id"]
 
         try:
 
-            registration = Registration.objects.get(order_id=order_id)
+            payment = Payment.objects.get(order_id=order_id)
 
-            registration.paid = True
+            payment.payment_id = payment_id
 
-            registration.save()
+            payment.verified = True
 
-        except Registration.DoesNotExist:
+            payment.save()
+
+            Registration.objects.filter(
+                player=payment.user
+            ).update(
+                paid=True,
+                order_id=order_id
+            )
+
+        except Payment.DoesNotExist:
             pass
 
     return HttpResponse(status=200)

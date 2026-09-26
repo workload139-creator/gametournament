@@ -15,7 +15,7 @@ class Tournament(models.Model):
 from django.conf import settings
 
 class Registration(models.Model):
-
+order_id=models.CharField(max_length=100,blank=True)
     tournament = models.ForeignKey(
         Tournament,
         on_delete=models.CASCADE

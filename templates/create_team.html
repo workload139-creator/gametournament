@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Create Team</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input
+name="name"
+class="form-control"
+placeholder="Team Name">
+
+<button class="btn btn-warning mt-3">
+Create Team
+</button>
+
+</form>
+
+{% endblock %}

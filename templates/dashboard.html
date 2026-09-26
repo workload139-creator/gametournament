@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Player Dashboard</h2>
+
+<div class="gaming-card p-4">
+
+<h4>Wallet</h4>
+
+<p>₹{{request.user.wallet}}</p>
+
+<hr>
+
+<h4>Transactions</h4>
+
+{% for t in transactions %}
+
+<p>{{t.transaction_type}} ₹{{t.amount}}</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

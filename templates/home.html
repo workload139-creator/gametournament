@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Upcoming Tournaments</h2>
+
+{% for t in tournaments %}
+
+<div class="card bg-secondary text-white mt-3">
+
+<div class="card-body">
+
+<h3>{{ t.title }}</h3>
+
+<p>Entry ₹{{ t.entry_fee }}</p>
+
+<p>Prize ₹{{ t.prize_pool }}</p>
+
+<p>{{ t.date }}</p>
+
+<button class="btn btn-warning">
+Register
+</button>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,22 +1,67 @@
+
 {% extends "base.html" %}
 
 {% block content %}
 
-<h2>Player Dashboard</h2>
+<h2 class="mb-4">Player Dashboard</h2>
+
+<div class="row">
+
+<div class="col-md-4">
 
 <div class="gaming-card p-4">
 
 <h4>Wallet</h4>
 
-<p>₹{{request.user.wallet}}</p>
+<h2>₹{{request.user.wallet}}</h2>
 
-<hr>
+</div>
 
-<h4>Transactions</h4>
+</div>
+
+<div class="col-md-4">
+
+<div class="gaming-card p-4">
+
+<h4>FF UID</h4>
+
+<h2>{{request.user.ff_uid}}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="gaming-card p-4">
+
+<h4>Referral Bonus</h4>
+
+<h2>₹20</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="gaming-card p-4 mt-4">
+
+<h4>Recent Transactions</h4>
 
 {% for t in transactions %}
 
-<p>{{t.transaction_type}} ₹{{t.amount}}</p>
+<div class="transaction-row">
+
+<span>{{t.transaction_type}}</span>
+
+<span>₹{{t.amount}}</span>
+
+</div>
+
+{% empty %}
+
+<p>No transactions</p>
 
 {% endfor %}
 

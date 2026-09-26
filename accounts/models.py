@@ -15,3 +15,5 @@ def add_reward(self,amount):
     self.wallet+=amount
 
     self.save()
+def whatsapp_number(self):
+    return self.phone.replace("+", "")

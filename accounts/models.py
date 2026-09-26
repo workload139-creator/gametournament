@@ -10,3 +10,8 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+def add_reward(self,amount):
+
+    self.wallet+=amount
+
+    self.save()

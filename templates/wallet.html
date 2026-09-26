@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="gaming-card p-4">
+
+<h2>Wallet</h2>
+
+<h1>₹{{request.user.wallet}}</h1>
+
+<button class="btn btn-success">
+
+Withdraw
+
+</button>
+
+</div>
+
+{% endblock %}

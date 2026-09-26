@@ -12,3 +12,6 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+path("teams/", include("teams.urls")),
+path("wallet/", include("wallet.urls")),
+path("referrals/", include("referrals.urls")),

@@ -1,31 +1,482 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<h2>Upcoming Tournaments</h2>
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
-{% for t in tournaments %}
+<div class="hero-section">
 
-<div class="card bg-secondary text-white mt-3">
+    <div class="overlay"></div>
 
-<div class="card-body">
+    <div class="hero-content">
 
-<h3>{{ t.title }}</h3>
+        <h1 class="hero-title">
+            🔥 FREE FIRE TOURNAMENT PRO
+        </h1>
 
-<p>Entry ₹{{ t.entry_fee }}</p>
+        <p class="hero-text">
+            Win ₹5 Per Kill • Daily Custom Rooms • Live Leaderboard
+        </p>
 
-<p>Prize ₹{{ t.prize_pool }}</p>
+        <div id="countdown" class="countdown-box">
+            Loading...
+        </div>
 
-<p>{{ t.date }}</p>
+        <div class="hero-buttons">
 
-<button class="btn btn-warning">
-Register
-</button>
+            <a href="/accounts/register/" class="btn btn-warning btn-lg glow-btn">
+                Register Now
+            </a>
+
+            <a href="/leaderboard/" class="btn btn-outline-light btn-lg">
+                Leaderboard
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 
+<div class="container mt-5">
+
+    <div class="row text-center">
+
+        <div class="col-md-3 mb-3">
+
+            <div class="gaming-card p-4">
+
+                <h2>₹5</h2>
+
+                <p>Per Kill Reward</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+            <div class="gaming-card p-4">
+
+                <h2>24×7</h2>
+
+                <p>Custom Rooms</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+            <div class="gaming-card p-4">
+
+                <h2>100%</h2>
+
+                <p>Secure Payment</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+            <div class="gaming-card p-4">
+
+                <h2>Live</h2>
+
+                <p>Leaderboard</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-{% endfor %}
+<div class="container mt-5">
+
+    <div class="section-title">
+        Upcoming Tournaments
+    </div>
+
+    <div class="row">
+
+        {% for t in tournaments %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="gaming-card tournament-card">
+
+                <div class="card-top">
+
+                    <span class="status">{{t.status}}</span>
+
+                </div>
+
+                <div class="card-body">
+
+                    <h3>{{t.title}}</h3>
+
+                    <p>💰 Entry: ₹{{t.entry_fee}}</p>
+
+                    <p>🏆 Prize: ₹{{t.prize_pool}}</p>
+
+                    <p>📅 {{t.date}}</p>
+
+                    {% if t.room_id %}
+
+                    <div class="room-box">
+
+                        <small>Room unlock after payment</small>
+
+                    </div>
+
+                    {% endif %}
+
+                    <a href="/register/{{t.id}}/" class="btn btn-warning w-100 mt-3 glow-btn">
+                        Join Tournament
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="text-center text-white">
+
+            No Tournament Available
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="container mt-5">
+
+    <div class="section-title">
+        Tournament Modes
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+
+            <div class="gaming-card p-4 text-center">
+
+                <h3>Solo</h3>
+
+                <p>1 Player</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="gaming-card p-4 text-center">
+
+                <h3>Duo</h3>
+
+                <p>2 Players</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="gaming-card p-4 text-center">
+
+                <h3>Squad</h3>
+
+                <p>4 Players</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container mt-5">
+
+    <div class="section-title">
+        Quick Actions
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3 mb-3">
+
+            <a href="/teams/create/" class="btn btn-danger w-100 p-3">
+                Create Team
+            </a>
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+            <a href="/wallet/" class="btn btn-success w-100 p-3">
+                Wallet
+            </a>
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+            <a href="/leaderboard/" class="btn btn-primary w-100 p-3">
+                Live Leaderboard
+            </a>
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+            <a href="/accounts/register/" class="btn btn-warning w-100 p-3">
+                Invite Friends
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container mt-5 mb-5">
+
+    <div class="section-title">
+        Why Choose Us?
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="gaming-card p-4 text-center">
+
+                <h4>⚡ Instant Verification</h4>
+
+                <p>Fast registration after payment.</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="gaming-card p-4 text-center">
+
+                <h4>💎 Fair Matches</h4>
+
+                <p>Organized custom rooms with transparent results.</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="gaming-card p-4 text-center">
+
+                <h4>🏆 Automatic Rewards</h4>
+
+                <p>Wallet updates after approved results.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/countdown.js' %}"></script>
+
+<style>
+
+.hero-section{
+
+background:url('{% static "images/hero.jpg" %}') center/cover;
+
+height:520px;
+
+position:relative;
+
+border-radius:25px;
+
+overflow:hidden;
+
+margin-bottom:40px;
+
+}
+
+.overlay{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.65);
+
+}
+
+.hero-content{
+
+position:absolute;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+text-align:center;
+
+color:white;
+
+width:90%;
+
+}
+
+.hero-title{
+
+font-size:48px;
+
+font-weight:900;
+
+text-shadow:0 0 20px orange;
+
+}
+
+.hero-text{
+
+font-size:20px;
+
+margin:15px 0;
+
+}
+
+.countdown-box{
+
+display:inline-block;
+
+padding:12px 25px;
+
+background:#111;
+
+border:2px solid orange;
+
+border-radius:12px;
+
+font-size:24px;
+
+margin:20px 0;
+
+box-shadow:0 0 20px orange;
+
+}
+
+.glow-btn{
+
+box-shadow:0 0 15px orange;
+
+transition:.3s;
+
+}
+
+.glow-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 0 30px orange;
+
+}
+
+.section-title{
+
+font-size:32px;
+
+font-weight:700;
+
+color:white;
+
+margin-bottom:25px;
+
+border-left:6px solid orange;
+
+padding-left:15px;
+
+}
+
+.tournament-card{
+
+overflow:hidden;
+
+}
+
+.card-top{
+
+height:8px;
+
+background:linear-gradient(90deg,#ff6600,#ffd000);
+
+}
+
+.status{
+
+background:#ff6600;
+
+padding:5px 12px;
+
+border-radius:0 0 10px 0;
+
+color:white;
+
+font-size:12px;
+
+position:absolute;
+
+}
+
+.room-box{
+
+padding:10px;
+
+background:#1b1b1b;
+
+border-radius:10px;
+
+margin-top:10px;
+
+}
+
+@media(max-width:768px){
+
+.hero-title{
+
+font-size:32px;
+
+}
+
+.hero-section{
+
+height:420px;
+
+}
+
+}
+
+</style>
 
 {% endblock %}

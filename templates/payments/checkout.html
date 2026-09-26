@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="gaming-card p-4 text-center">
+
+<h2>Payment</h2>
+
+<p>Secure Razorpay Checkout</p>
+
+<button id="payBtn" class="btn btn-warning btn-lg">
+
+Pay Now
+
+</button>
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="{% static 'js/payment.js' %}"></script>
+
+{% endblock %}

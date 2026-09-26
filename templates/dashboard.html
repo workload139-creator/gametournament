@@ -1,43 +1,48 @@
 
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<h2 class="mb-4">Player Dashboard</h2>
+<h2 class="text-white mb-4">
+
+Welcome {{request.user.username}}
+
+</h2>
 
 <div class="row">
 
-<div class="col-md-4">
+<div class="col-md-4 mb-3">
 
 <div class="gaming-card p-4">
 
-<h4>Wallet</h4>
+<h5>Free Fire UID</h5>
 
-<h2>₹{{request.user.wallet}}</h2>
-
-</div>
+<h3>{{request.user.ff_uid}}</h3>
 
 </div>
 
-<div class="col-md-4">
+</div>
+
+<div class="col-md-4 mb-3">
 
 <div class="gaming-card p-4">
 
-<h4>FF UID</h4>
+<h5>Wallet</h5>
 
-<h2>{{request.user.ff_uid}}</h2>
-
-</div>
+<h3>₹{{request.user.wallet}}</h3>
 
 </div>
 
-<div class="col-md-4">
+</div>
+
+<div class="col-md-4 mb-3">
 
 <div class="gaming-card p-4">
 
-<h4>Referral Bonus</h4>
+<h5>Status</h5>
 
-<h2>₹20</h2>
+<h3 class="text-success">Verified</h3>
 
 </div>
 
@@ -47,23 +52,51 @@
 
 <div class="gaming-card p-4 mt-4">
 
-<h4>Recent Transactions</h4>
+<h4>Quick Actions</h4>
 
-{% for t in transactions %}
+<div class="row mt-3">
 
-<div class="transaction-row">
+<div class="col-md-3 mb-2">
 
-<span>{{t.transaction_type}}</span>
+<a href="/teams/create/" class="btn btn-warning w-100">
 
-<span>₹{{t.amount}}</span>
+Create Team
+
+</a>
 
 </div>
 
-{% empty %}
+<div class="col-md-3 mb-2">
 
-<p>No transactions</p>
+<a href="/leaderboard/" class="btn btn-primary w-100">
 
-{% endfor %}
+Leaderboard
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-2">
+
+<a href="/wallet/" class="btn btn-success w-100">
+
+Wallet
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-2">
+
+<a href="/accounts/logout/" class="btn btn-danger w-100">
+
+Logout
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 

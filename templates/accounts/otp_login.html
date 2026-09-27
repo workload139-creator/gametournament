@@ -1,15 +1,21 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
-<div class="auth-card">
+<div class="gaming-card p-4">
 
 <h2>OTP Login</h2>
 
-<input class="form-control mb-3" placeholder="Phone Number">
+<input
+id="phone"
+class="form-control mb-3"
+placeholder="+91XXXXXXXXXX">
 
-<button class="btn btn-warning w-100">
+<div id="recaptcha-container"></div>
+
+<button
+id="sendOtp"
+class="btn btn-warning w-100">
 
 Send OTP
 
@@ -17,6 +23,17 @@ Send OTP
 
 </div>
 
-<script src="{% static 'js/auth.js' %}"></script>
+<script>
+
+window.firebaseConfig={
+apiKey:"{{firebase.apiKey}}",
+authDomain:"{{firebase.authDomain}}",
+projectId:"{{firebase.projectId}}"
+};
+
+</script>
+
+<script type="module" src="/static/js/firebase.js"></script>
+<script type="module" src="/static/js/otp.js"></script>
 
 {% endblock %}

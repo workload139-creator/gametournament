@@ -1,103 +1,102 @@
-
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
 
-<h2 class="text-white mb-4">
-
-Welcome {{request.user.username}}
-
-</h2>
-
 <div class="row">
 
-<div class="col-md-4 mb-3">
+<div class="col-lg-8">
 
 <div class="gaming-card p-4">
 
-<h5>Free Fire UID</h5>
+<h2>Welcome {{request.user.username}}</h2>
 
-<h3>{{request.user.ff_uid}}</h3>
+<p>Free Fire UID: {{request.user.ff_uid}}</p>
 
-</div>
+<div class="row mt-4">
 
-</div>
+<div class="col-md-4">
 
-<div class="col-md-4 mb-3">
-
-<div class="gaming-card p-4">
-
-<h5>Wallet</h5>
+<div class="stat-box">
 
 <h3>₹{{request.user.wallet}}</h3>
 
+<small>Wallet</small>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="stat-box">
+
+<h3>LIVE</h3>
+
+<small>Tournaments</small>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="stat-box">
+
+<h3>24×7</h3>
+
+<small>Support</small>
+
+</div>
+
 </div>
 
 </div>
 
-<div class="col-md-4 mb-3">
+<hr>
+
+<div class="d-grid gap-3 mt-4">
+
+<a href="/teams/create/" class="btn btn-warning">
+Create Team
+</a>
+
+<a href="/leaderboard/" class="btn btn-primary">
+Live Leaderboard
+</a>
+
+<a href="/wallet/" class="btn btn-success">
+Wallet
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
 
 <div class="gaming-card p-4">
 
-<h5>Status</h5>
+<h4>Referral</h4>
 
-<h3 class="text-success">Verified</h3>
+<input class="form-control mb-3"
+value="https://ffpro.com/ref/{{request.user.id}}"
+readonly>
 
-</div>
+<button class="btn btn-warning w-100">
 
-</div>
+Copy Link
 
-</div>
-
-<div class="gaming-card p-4 mt-4">
-
-<h4>Quick Actions</h4>
-
-<div class="row mt-3">
-
-<div class="col-md-3 mb-2">
-
-<a href="/teams/create/" class="btn btn-warning w-100">
-
-Create Team
-
-</a>
-
-</div>
-
-<div class="col-md-3 mb-2">
-
-<a href="/leaderboard/" class="btn btn-primary w-100">
-
-Leaderboard
-
-</a>
-
-</div>
-
-<div class="col-md-3 mb-2">
-
-<a href="/wallet/" class="btn btn-success w-100">
-
-Wallet
-
-</a>
-
-</div>
-
-<div class="col-md-3 mb-2">
-
-<a href="/accounts/logout/" class="btn btn-danger w-100">
-
-Logout
-
-</a>
+</button>
 
 </div>
 
 </div>
 
 </div>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
 
 {% endblock %}

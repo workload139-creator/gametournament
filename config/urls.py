@@ -24,3 +24,11 @@ path("referrals/",include("referrals.urls")),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+from accounts.otp_views import otp_login, verify_otp
+
+urlpatterns += [
+    path("accounts/otp/", otp_login, name="otp_login"),
+    path("accounts/verify/", verify_otp, name="verify_otp"),
+]

@@ -1,5 +1,5 @@
-
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -19,17 +19,49 @@
 
 <div class="alert alert-success">
 
-<h4>Room Unlocked</h4>
+<h3>Room Unlocked</h3>
 
-<p><b>Room ID:</b> {{tournament.room_id}}</p>
+<p><strong>Room ID:</strong></p>
 
-<p><b>Password:</b> {{tournament.room_password}}</p>
+<input id="roomid"
+class="form-control"
+value="{{tournament.room_id}}"
+readonly>
 
-<a href="/unlock/{{tournament.id}}/" class="btn btn-success">
+<p class="mt-3"><strong>Password:</strong></p>
 
-Send on WhatsApp
+<input id="roompass"
+class="form-control"
+value="{{tournament.room_password}}"
+readonly>
 
-</a>
+<div class="row mt-4">
+
+<div class="col-md-6">
+
+<button
+class="btn btn-warning w-100"
+onclick="copyRoom()">
+
+Copy Room
+
+</button>
+
+</div>
+
+<div class="col-md-6">
+
+<button
+class="btn btn-success w-100"
+onclick="sendWhatsApp()">
+
+WhatsApp
+
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -37,11 +69,12 @@ Send on WhatsApp
 
 <div class="alert alert-warning">
 
-Payment pending.
+Payment Pending
 
 </div>
 
-<a href="/payments/create-order/" class="btn btn-warning">
+<a href="/payments/create-order/"
+class="btn btn-warning">
 
 Pay Now
 
@@ -51,7 +84,8 @@ Pay Now
 
 {% else %}
 
-<a href="/register/{{tournament.id}}/" class="btn btn-danger">
+<a href="/register/{{tournament.id}}/"
+class="btn btn-danger">
 
 Join Tournament
 
@@ -60,5 +94,7 @@ Join Tournament
 {% endif %}
 
 </div>
+
+<script src="{% static 'js/room.js' %}"></script>
 
 {% endblock %}

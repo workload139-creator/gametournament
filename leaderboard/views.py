@@ -3,14 +3,14 @@ from .models import MatchResult
 
 def leaderboard(request):
 
-    data=MatchResult.objects.filter(
+    results=MatchResult.objects.filter(
         approved=True
-    ).order_by("-kills")
+    ).order_by("-kills","placement")
 
     return render(
         request,
         "leaderboard.html",
         {
-            "results":data
+            "results":results
         }
     )

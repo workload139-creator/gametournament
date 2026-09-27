@@ -1,0 +1,28 @@
+body{
+margin:0;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+font-family:Poppins;
+}
+
+.loader{
+text-align:center;
+}
+
+.circle{
+width:80px;
+height:80px;
+border:6px solid orange;
+border-top:6px solid transparent;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:auto;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}

@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<div class="gaming-card p-4">
+
 <h2>Create Team</h2>
 
 <form method="POST">
@@ -10,13 +12,17 @@
 
 <input
 name="name"
-class="form-control"
+class="form-control mb-3"
 placeholder="Team Name">
 
-<button class="btn btn-warning mt-3">
+<button class="btn btn-warning w-100">
+
 Create Team
+
 </button>
 
 </form>
+
+</div>
 
 {% endblock %}

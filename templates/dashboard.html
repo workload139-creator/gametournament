@@ -99,4 +99,16 @@ Copy Link
 
 <script src="{% static 'js/dashboard.js' %}"></script>
 
+
+
+{% if request.user.wallet > 0 %}
+
+<div class="alert alert-success">
+
+🏆 Congratulations! Rewards Added.
+
+</div>
+
+{% endif %}
+
 {% endblock %}

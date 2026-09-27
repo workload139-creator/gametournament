@@ -1,6 +1,6 @@
-
 from django.db import models
 from django.conf import settings
+from tournaments.models import Tournament
 
 class MatchResult(models.Model):
 
@@ -9,11 +9,18 @@ class MatchResult(models.Model):
         on_delete=models.CASCADE
     )
 
+    tournament=models.ForeignKey(
+        Tournament,
+        on_delete=models.CASCADE
+    )
+
     kills=models.PositiveIntegerField(default=0)
 
     placement=models.PositiveIntegerField(default=0)
 
     approved=models.BooleanField(default=False)
+
+    reward_sent=models.BooleanField(default=False)
 
     created=models.DateTimeField(auto_now_add=True)
 
@@ -31,4 +38,7 @@ class MatchResult(models.Model):
     @property
     def reward(self):
 
-        return (self.kills*5)+self.placement_bonus
+        return self.kills*5+self.placement_bonus
+
+    def __str__(self):
+        return self.player.username

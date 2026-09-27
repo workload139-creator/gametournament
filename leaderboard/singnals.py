@@ -1,42 +1,52 @@
+from decimal import Decimal
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from .models import MatchResult
-from wallet.models import WalletTransaction
-from notifications.whatsapp import send_whatsapp
 
-@receiver(post_save,sender=MatchResult)
 
-def reward_player(sender,instance,created,**kwargs):
+@receiver(post_save, sender=MatchResult)
+def reward_player(sender, instance, created, **kwargs):
+    """
+    Approved match result hone par player ko reward wallet me add karta hai.
+    Reward ek hi baar diya jayega.
+    """
 
-    if instance.approved and not instance.reward_sent:
+    if not instance.approved:
+        return
 
-        instance.player.add_reward(instance.reward)
+    if instance.reward_sent:
+        return
 
-        WalletTransaction.objects.create(
+    reward_amount = Decimal(str(instance.reward))
 
-            user=instance.player,
+    if reward_amount <= 0:
+        instance.reward_sent = True
+        MatchResult.objects.filter(
+            pk=instance.pk,
+            reward_sent=False
+        ).update(reward_sent=True)
+        return
 
-            amount=instance.reward,
+    player = instance.player
 
-            transaction_type="Tournament Reward"
+    # Wallet credit
+    player.add_wallet(reward_amount)
 
-        )
+    # Transaction record
+    from wallet.models import WalletTransaction
 
-        send_whatsapp(
+    WalletTransaction.objects.create(
+        user=player,
+        amount=reward_amount,
+        transaction_type="Reward"
+    )
 
-            instance.player.whatsapp_number(),
-
-            f"""🏆 Reward Added
-
-Kills: {instance.kills}
-
-Reward: ₹{instance.reward}
-
-Wallet Updated Successfully."""
-
-        )
-
-        instance.reward_sent=True
-
-        instance.save()
+    # Prevent duplicate reward
+    MatchResult.objects.filter(
+        pk=instance.pk,
+        reward_sent=False
+    ).update(
+        reward_sent=True
+    )

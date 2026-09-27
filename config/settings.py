@@ -14,6 +14,9 @@ ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
     "127.0.0.1,localhost"
 ).split(",")
+CSRF_TRUSTED_ORIGINS = [
+    "https://ff-tournament-pro-production.up.railway.app",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",

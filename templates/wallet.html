@@ -3,17 +3,49 @@
 
 {% block content %}
 
-<div class="gaming-card p-4">
-
 <h2>Wallet</h2>
 
-<h1>₹{{request.user.wallet}}</h1>
+<div class="gaming-card p-4">
+
+<h3>Balance: ₹{{request.user.wallet}}</h3>
+
+<hr>
+
+<form method="POST">
+
+{% csrf_token %}
+
+{{form.as_p}}
 
 <button class="btn btn-success">
 
 Withdraw
 
 </button>
+
+</form>
+
+</div>
+
+<div class="gaming-card p-4 mt-4">
+
+<h4>History</h4>
+
+{% for t in transactions %}
+
+<div class="transaction-row">
+
+<span>{{t.transaction_type}}</span>
+
+<span>₹{{t.amount}}</span>
+
+</div>
+
+{% empty %}
+
+<p>No Transactions</p>
+
+{% endfor %}
 
 </div>
 

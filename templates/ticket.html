@@ -2,22 +2,24 @@
 
 {% block content %}
 
-<div class="gaming-card p-4 text-center">
+<div class="gaming-card p-5 text-center">
 
-<h2>Tournament Ticket</h2>
+<h2>Entry Ticket</h2>
 
 <p>{{request.user.username}}</p>
 
 <p>UID: {{request.user.ff_uid}}</p>
 
-<canvas id="qrCanvas"></canvas>
+<canvas id="ticketQR"></canvas>
 
-<button class="btn btn-warning mt-3" onclick="downloadQR()">
+<button class="btn btn-warning mt-3" onclick="downloadTicket()">
+
 Download Ticket
+
 </button>
 
 </div>
 
-<script src="/static/js/qr.js"></script>
+<script src="/static/js/ticket.js"></script>
 
 {% endblock %}

@@ -1,12 +1,12 @@
 .gaming-card{
 
-background:linear-gradient(135deg,#111,#181818);
+background:linear-gradient(135deg,#111,#1d1d1d);
 
-border:1px solid orange;
+border:1px solid #ff7b00;
 
 border-radius:20px;
 
-box-shadow:0 0 20px rgba(255,136,0,.5);
+box-shadow:0 0 25px rgba(255,123,0,.5);
 
 transition:.3s;
 
@@ -14,52 +14,40 @@ transition:.3s;
 
 .gaming-card:hover{
 
-transform:translateY(-5px);
+transform:translateY(-4px);
 
-box-shadow:0 0 35px orange;
-
-}
-
-.transaction-row{
-
-display:flex;
-
-justify-content:space-between;
-
-padding:10px 0;
-
-border-bottom:1px solid rgba(255,255,255,.1);
+box-shadow:0 0 35px #ff9800;
 
 }
 
-.footer{
-
-background:#000;
-
-padding:40px;
-
-margin-top:60px;
-
-border-top:1px solid orange;
-
-color:#fff;
-
-}
-
-.countdown-box{
-
-background:#111;
-
-padding:12px;
+.stat-box{
 
 text-align:center;
 
-border:2px solid orange;
+padding:18px;
 
-border-radius:10px;
+background:#222;
 
-font-size:22px;
+border-radius:15px;
 
-color:#fff;
+margin-bottom:10px;
+
+}
+
+.stat-box h3{
+
+color:#ff9800;
+
+font-weight:700;
+
+}
+
+@media(max-width:768px){
+
+.gaming-card{
+
+margin-bottom:20px;
+
+}
 
 }

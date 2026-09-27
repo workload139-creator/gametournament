@@ -3,13 +3,13 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "CHANGE_ME"
+SECRET_KEY = os.getenv("SECRET_KEY","CHANGE_ME")
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG","True")=="True"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS=["*"]
 
-INSTALLED_APPS = [
+INSTALLED_APPS=[
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -21,16 +21,9 @@ INSTALLED_APPS = [
     "channels",
 
     "accounts",
-    "tournaments",
-    "teams",
-    "payments",
-    "wallet",
-    "leaderboard",
-    "referrals",
-    "notifications",
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE=[
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -40,9 +33,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF="config.urls"
 
-TEMPLATES = [
+TEMPLATES=[
 {
 "BACKEND":"django.template.backends.django.DjangoTemplates",
 "DIRS":[BASE_DIR/"templates"],
@@ -57,11 +50,11 @@ TEMPLATES = [
 }
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION="config.wsgi.application"
 
-ASGI_APPLICATION = "config.asgi.application"
+ASGI_APPLICATION="config.asgi.application"
 
-DATABASES = {
+DATABASES={
 "default":{
 "ENGINE":"django.db.backends.sqlite3",
 "NAME":BASE_DIR/"db.sqlite3"
@@ -71,11 +64,9 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS=[]
 
 LANGUAGE_CODE="en-us"
-
 TIME_ZONE="Asia/Kolkata"
 
 USE_I18N=True
-
 USE_TZ=True
 
 STATIC_URL="/static/"
@@ -85,6 +76,8 @@ STATIC_ROOT=BASE_DIR/"staticfiles"
 MEDIA_URL="/media/"
 MEDIA_ROOT=BASE_DIR/"media"
 
+DEFAULT_AUTO_FIELD="django.db.models.BigAutoField"
+
 AUTH_USER_MODEL="accounts.User"
 
 CHANNEL_LAYERS={
@@ -92,76 +85,3 @@ CHANNEL_LAYERS={
 "BACKEND":"channels.layers.InMemoryChannelLayer"
 }
 }
-
-RAZORPAY_KEY="rzp_test_xxxxx"
-RAZORPAY_SECRET="xxxxxxxx"
-
-WHATSAPP_TOKEN="YOUR_META_TOKEN"
-WHATSAPP_PHONE_ID="YOUR_PHONE_ID"
-"config.middleware.MaintenanceMid
-
-
-CSRF_COOKIE_SECURE=True
-
-SESSION_COOKIE_SECURE=True
-
-X_FRAME_OPTIONS="DENY"
-
-SECURE_BROWSER_XSS_FILTER=True
-
-
-dleware",
-
-
-# Firebase
-FIREBASE_API_KEY = "YOUR_FIREBASE_API_KEY"
-FIREBASE_AUTH_DOMAIN = "YOUR_PROJECT.firebaseapp.com"
-FIREBASE_PROJECT_ID = "YOUR_PROJECT"
-
-# Razorpay Production
-RAZORPAY_KEY = "rzp_live_xxxxxxxxx"
-RAZORPAY_SECRET = "xxxxxxxx"
-
-# WhatsApp Cloud API
-WHATSAPP_TOKEN = "YOUR_META_ACCESS_TOKEN"
-WHATSAPP_PHONE_ID = "YOUR_PHONE_NUMBER_ID"
-
-
-
-EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-
-EMAIL_HOST="smtp.gmail.com"
-
-EMAIL_PORT=587
-
-EMAIL_USE_TLS=True
-
-EMAIL_HOST_USER="YOUR_EMAIL"
-
-EMAIL_HOST_PASSWORD="APP_PASSWORD"
-
-
-
-
-
-import os
-
-SECRET_KEY=os.getenv("SECRET_KEY",SECRET_KEY)
-
-DEBUG=os.getenv("DEBUG","True")=="True"
-
-ALLOWED_HOSTS=["*"]
-
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-SECURE_SSL_REDIRECT=not DEBUG
-
-SESSION_COOKIE_SECURE=not DEBUG
-
-CSRF_COOKIE_SECURE=not DEBUG
-
-SECURE_HSTS_SECONDS=31536000
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS=True
-
-SECURE_HSTS_PRELOAD=True

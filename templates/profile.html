@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="gaming-card p-4">
+
+<h2>{{request.user.username}}</h2>
+
+<p>FF UID: {{request.user.ff_uid}}</p>
+
+<p>Wallet: ₹{{request.user.wallet}}</p>
+
+<button class="btn btn-warning">
+
+Edit Profile
+
+</button>
+
+</div>
+
+<script src="/static/js/profile.js"></script>
+
+{% endblock %}

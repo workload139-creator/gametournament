@@ -1,0 +1,15 @@
+{
+  "name": "FF Tournament Pro",
+  "short_name": "FF Pro",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff7b00",
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -6,13 +6,16 @@ from .models import MatchResult
 class MatchAdmin(admin.ModelAdmin):
 
     list_display=(
-    "player",
-    "kills",
-    "placement",
-    "reward",
-    "approved"
+        "player",
+        "tournament",
+        "kills",
+        "placement",
+        "reward",
+        "approved"
     )
 
     list_editable=("approved",)
 
     search_fields=("player__username",)
+
+    list_filter=("approved","tournament")

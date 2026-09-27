@@ -3,29 +3,17 @@
 
 {% block content %}
 
-<h2>Admin Analytics</h2>
+<h2 class="mb-4">Admin Analytics</h2>
 
 <div class="row">
 
 <div class="col-md-3">
 
-<div class="gaming-card p-4">
+<div class="gaming-card p-4 text-center">
 
-<h4>Players</h4>
+<h3>{{total_players}}</h3>
 
-<h2>{{total_players}}</h2>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="gaming-card p-4">
-
-<h4>Tournaments</h4>
-
-<h2>{{total_tournaments}}</h2>
+<p>Players</p>
 
 </div>
 
@@ -33,11 +21,11 @@
 
 <div class="col-md-3">
 
-<div class="gaming-card p-4">
+<div class="gaming-card p-4 text-center">
 
-<h4>Revenue</h4>
+<h3>{{total_tournaments}}</h3>
 
-<h2>₹{{revenue}}</h2>
+<p>Tournaments</p>
 
 </div>
 
@@ -45,11 +33,23 @@
 
 <div class="col-md-3">
 
-<div class="gaming-card p-4">
+<div class="gaming-card p-4 text-center">
 
-<h4>Payout</h4>
+<h3>₹{{revenue}}</h3>
 
-<h2>₹{{payout}}</h2>
+<p>Revenue</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="gaming-card p-4 text-center">
+
+<h3>₹{{payout}}</h3>
+
+<p>Payout</p>
 
 </div>
 

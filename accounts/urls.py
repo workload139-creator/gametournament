@@ -1,20 +1,23 @@
 from django.urls import path
 
 from .views import (
-register,
-login_view,
-logout_view,
-dashboard
+    register_view,
+    login_view,
+    logout_view,
+    dashboard,
+    profile_view
 )
 
-urlpatterns=[
+urlpatterns = [
 
-path("register/",register,name="register"),
+    path("register/", register_view, name="register"),
 
-path("login/",login_view,name="login"),
+    path("login/", login_view, name="login"),
 
-path("logout/",logout_view,name="logout"),
+    path("logout/", logout_view, name="logout"),
 
-path("dashboard/",dashboard,name="dashboard"),
+    path("dashboard/", dashboard, name="dashboard"),
+
+    path("profile/", profile_view, name="profile"),
 
 ]

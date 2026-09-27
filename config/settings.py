@@ -98,3 +98,4 @@ RAZORPAY_SECRET="xxxxxxxx"
 
 WHATSAPP_TOKEN="YOUR_META_TOKEN"
 WHATSAPP_PHONE_ID="YOUR_PHONE_ID"
+"config.middleware.MaintenanceMiddleware",

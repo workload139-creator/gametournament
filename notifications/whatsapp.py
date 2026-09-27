@@ -1,22 +1,25 @@
 import requests
 from django.conf import settings
 
-def send_whatsapp(phone, message):
+def send_whatsapp(phone,message):
 
-    url = f"https://graph.facebook.com/v20.0/{settings.WHATSAPP_PHONE_ID}/messages"
+    url=f"https://graph.facebook.com/v20.0/{settings.WHATSAPP_PHONE_ID}/messages"
 
-    headers = {
-        "Authorization": f"Bearer {settings.WHATSAPP_TOKEN}",
-        "Content-Type": "application/json"
+    headers={
+        "Authorization":f"Bearer {settings.WHATSAPP_TOKEN}",
+        "Content-Type":"application/json"
     }
 
-    payload = {
-        "messaging_product": "whatsapp",
-        "to": phone,
-        "type": "text",
-        "text": {
-            "body": message
+    data={
+        "messaging_product":"whatsapp",
+        "to":phone,
+        "type":"text",
+        "text":{
+            "body":message
         }
     }
 
-    requests.post(url, json=payload, headers=headers)
+    try:
+        requests.post(url,json=data,headers=headers,timeout=10)
+    except:
+        pass

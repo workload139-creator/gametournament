@@ -3,13 +3,19 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY","CHANGE_ME")
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "change-this-secret-key-before-production"
+)
 
-DEBUG = os.getenv("DEBUG","True")=="True"
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS=["*"]
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+).split(",")
 
-INSTALLED_APPS=[
+INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -21,67 +27,101 @@ INSTALLED_APPS=[
     "channels",
 
     "accounts",
+    "tournaments",
+    "teams",
+    "payments",
+    "wallet",
+    "leaderboard",
+    "referrals",
+    "notifications",
 ]
 
-MIDDLEWARE=[
+MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF="config.urls"
+ROOT_URLCONF = "config.urls"
 
-TEMPLATES=[
-{
-"BACKEND":"django.template.backends.django.DjangoTemplates",
-"DIRS":[BASE_DIR/"templates"],
-"APP_DIRS":True,
-"OPTIONS":{
-"context_processors":[
-"django.template.context_processors.request",
-"django.contrib.auth.context_processors.auth",
-"django.contrib.messages.context_processors.messages",
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
+        },
+    }
 ]
+
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
-}
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
 ]
 
-WSGI_APPLICATION="config.wsgi.application"
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Asia/Kolkata"
 
-ASGI_APPLICATION="config.asgi.application"
+USE_I18N = True
+USE_TZ = True
 
-DATABASES={
-"default":{
-"ENGINE":"django.db.backends.sqlite3",
-"NAME":BASE_DIR/"db.sqlite3"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "accounts.User"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
 }
-}
 
-AUTH_PASSWORD_VALIDATORS=[]
+RAZORPAY_KEY = os.getenv("RAZORPAY_KEY", "")
+RAZORPAY_SECRET = os.getenv("RAZORPAY_SECRET", "")
 
-LANGUAGE_CODE="en-us"
-TIME_ZONE="Asia/Kolkata"
+WHATSAPP_TOKEN = os.getenv("WHATSAPP_TOKEN", "")
+WHATSAPP_PHONE_ID = os.getenv("WHATSAPP_PHONE_ID", "")
 
-USE_I18N=True
-USE_TZ=True
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 
-STATIC_URL="/static/"
-STATICFILES_DIRS=[BASE_DIR/"static"]
-STATIC_ROOT=BASE_DIR/"staticfiles"
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 
-MEDIA_URL="/media/"
-MEDIA_ROOT=BASE_DIR/"media"
-
-DEFAULT_AUTO_FIELD="django.db.models.BigAutoField"
-
-AUTH_USER_MODEL="accounts.User"
-
-CHANNEL_LAYERS={
-"default":{
-"BACKEND":"channels.layers.InMemoryChannelLayer"
-}
-}
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

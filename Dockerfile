@@ -10,6 +10,8 @@ RUN pip install --no-cache-dir -r r.txt
 
 COPY . .
 
+RUN python manage.py collectstatic --noinput
+
 EXPOSE 8000
 
-CMD ["gunicorn","config.wsgi:application","-c","gunicorn.conf.py"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn config.wsgi:application -c gunicorn.conf.py"]
